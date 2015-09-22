@@ -4,6 +4,7 @@
   "description": "app to check weekly stuff consumption",
   "main": "index.js",
   "scripts": {
+    "start":"index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tethys Luxor",
