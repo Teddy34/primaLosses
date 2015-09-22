@@ -66,14 +66,6 @@ app.use('/', function(req,res) {
   });
 });
 
-app.listen(7777);
-
 // START THE SERVER
 // =============================================================================
-/*exports.startServer = function(port, path, callback) {
-  app.listen(port);
-  console.log('Magic happens on port ' + port);
-  if (callback) {
-    callback();
-  }
-};*/
+app.listen(process.env.PORT || 8080);
