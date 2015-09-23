@@ -7,7 +7,15 @@ var THROTTLE_DURATION = 5 * 60 * 1000;
 // functions to analyse losses
 
 var reduceLoss = function(memo, loss) {
-  return _(loss.items).reduce(reduceLostItem,memo);
+  //add items
+  memo =  _(loss.items).reduce(reduceLostItem,memo);
+  addShip(memo, loss);
+  return memo;
+};
+
+var addShip = function(memo, loss) {
+  memo[loss.victim.shipTypeID] = (_.isNumber(memo[loss.victim.shipTypeID])? memo[loss.victim.shipTypeID] : 0) + 1;
+  return memo;
 };
 
 var reduceLostItem = function (memo, value) {
@@ -51,6 +59,9 @@ app.use('/', function(req,res) {
   getLostStuff()
   .then(function(response) {
     res.send(response);
+  })
+  .catch(function(error) {
+    res.send({error:error});
   });
 });
 
